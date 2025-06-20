@@ -1,1 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juegos de Escape Resistencia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #000;
+      color: #eee;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, #111, #000);
+      text-align: center;
+      padding: 2rem 1rem;
+      animation: fadeIn 2s ease;
+    }
+    header img {
+      max-width: 180px;
+    }
+    nav {
+      background-color: #000;
+      border-bottom: 1px solid #333;
+    }
+    nav ul {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      list-style: none;
+      margin: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #ffd700;
+      font-family: 'Poppins', sans-serif;
+    }
+    .hero {
+      height: 60vh;
+      background-image: url('https://i.imgur.com/vbe0J4g.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 3s ease;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.65);
+    }
+    .hero-content {
+      position: relative;
+      color: #f2f2f2;
+      text-align: center;
+      z-index: 1;
+    }
+    .hero-content h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      animation: slideInDown 1.5s ease-out;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      animation: fadeIn 2s ease;
+    }
+    .hero-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #ffd700;
+      color: #000;
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+    .hero-content a:hover {
+      transform: scale(1.05);
+    }
+    section {
+      padding: 4rem 1rem;
+      animation: fadeIn 2s ease;
+    }
+    .section-dark {
+      background-color: #111;
+    }
+    h2.section-title {
+      font-family: 'Poppins', sans-serif;
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .descripcion {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .grid-salas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(255, 255, 255, 0.07);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-content h3 {
+      font-family: 'Poppins', sans-serif;
+      color: #ffd700;
+    }
+    .card-content p {
+      font-size: 0.95rem;
+    }
+    .card-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #25d366;
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.3s ease;
+    }
+    .card-content a:hover {
+      background-color: #1ebc5b;
+    }
+    .cta {
+      background-color: #111;
+      text-align: center;
+      color: #ffd700;
+    }
+    .cta h2 {
+      font-family: 'Poppins', sans-serif;
+    }
+    .cta p {
+      color: #f2f2f2;
+    }
+    .cta a {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #25d366;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      border-radius: 6px;
+    }
+    footer {
+      background-color: #000;
+      padding: 2rem 1rem;
+      color: #aaa;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    footer .columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    footer .col {
+      flex: 1 1 200px;
+    }
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background-color: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 999;
+      box-shadow: 0 0 10px #000;
+      text-decoration: none;
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sonido ambiente -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/27/audio_e0419bbaf3.mp3" type="audio/mpeg">
+  </audio>
 
+  <!-- HEADER -->
+  <header>
+    <img src="https://i.imgur.com/BP0wYSk.png" alt="Juegos de Escape Logo" />
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#salas">Salas</a></li>
+      <li><a href="#quienes">Quiénes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Viví la experiencia Escape en Resistencia</h1>
+      <p>Historias únicas. Adrenalina real. ¿Podés escapar?</p>
+      <a href="#salas">Ver Salas</a>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
+  <section class="section-dark" id="quienes">
+    <h2 class="section-title">Quiénes Somos</h2>
+    <div class="descripcion">
+      <p>Somos JDER - Juegos de Escape Resistencia. Creamos experiencias inmersivas que ponen a prueba tu ingenio, tu capacidad de trabajo en equipo y tu adrenalina. Cada sala es una historia distinta con desafíos únicos que tendrás que resolver antes de que se acabe el tiempo. ¿Estás listo para vivirlo?</p>
+    </div>
+  </section>
+
+  <!-- SALAS -->
+  <section id="salas">
+    <h2 class="section-title">Nuestras Salas</h2>
+    <div class="grid-salas">
+      <div class="card"><img src="https://i.imgur.com/vbe0J4g.jpg" alt="Ultra Tumba"><div class="card-content"><h3>Ultra Tumba 🦇🪦🥀</h3><p>Un antiguo caso sin resolver te conduce al cementerio... ¿Revelarás la verdad antes de convertirte en víctima?</p><a href="https://wa.me/5493624631591">Reservar</a></div></div>
+      <div class="card"><img src="https://i.imgur.com/FRsqGoF.jpg" alt="Sala Velatoria"><div class="card-content"><h3>Sala Velatoria ⚰️🕯️👻</h3><p>Infiltrate en una sala velatoria para rescatar a tu amigo y llevarte la fortuna familiar... ¿a qué precio?</p><a href="https://wa.me/5493624631591">Reservar</a></div></div>
+      <div class="card"><img src="https://i.imgur.com/FZy1aUS.jpg" alt="Atraco Narco"><div class="card-content"><h3>Atraco Narco 💰🔫📺</h3><p>Robá un búnker narco lleno de peligro, trampas y tiempo límite. ¿Podrás salir con vida?</p><a href="https://wa.me/5493624631591">Reservar</a></div></div>
+      <div class="card"><img src="https://i.imgur.com/y5BxC4q.jpg" alt="Pabellón 5"><div class="card-content"><h3>Pabellón 5 🧱⚽📻</h3><p>Una celda, una banda rival, una oportunidad de escapar. ¿Lograrás evadir a los guardias?</p><a href="https://wa.me/5493624631591">Reservar</a></div></div>
+      <div class="card"><img src="https://i.imgur.com/kcgdoXt.jpg" alt="Plan Dental"><div class="card-content"><h3>Plan Dental 🦷😱🪥</h3><p>Un dentista maniático ha comenzado la extracción... ¿Podrás escapar antes del final?</p><a href="https://wa.me/5493624631591">Reservar</a></div></div>
+      <div class="card"><img src="https://i.imgur.com/nFJ3NSh.jpg" alt="Culto Zodiacal"><div class="card-content"><h3>Culto Zodiacal 🔮♒📓</h3><p>Un ritual astrológico, sangre, cartas y símbolos ocultos. ¿Vas a sobrevivir a esta secta?</p><a href="https://wa.me/5493624631591">Reservar</a></div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>¿Listo para la aventura?</h2>
+    <p>Contactanos y reservá tu lugar ahora mismo. ¡Viví la experiencia!</p>
+    <a href="https://wa.me/5493624631591?text=Hola%20Juegos%20de%20Escape!%20Tengo%20una%20consulta%0ADatos%20importantes%20(-no%20borrar-)%0AReserva:%20Finalizada%0APago%20de%20se%C3%B1a:%20Completado">WhatsApp</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="columns">
+      <div class="col">
+        <h4>Contacto</h4>
+        <p><a href="mailto:info@jder.com">info@jder.com</a></p>
+        <p>Resistencia, Chaco - Argentina</p>
+      </div>
+      <div class="col">
+        <h4>Redes</h4>
+        <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+        <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        <p><a href="https://tiktok.com" target="_blank">TikTok</a></p>
+      </div>
+      <div class="col">
+        <h4>Derechos</h4>
+        <p>© 2025 Juegos de Escape Resistencia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a class="whatsapp-button" href="https://wa.me/5493624631591?text=Hola%20Juegos%20de%20Escape!%20Tengo%20una%20consulta%0ADatos%20importantes%20(-no%20borrar-)%0AReserva:%20Finalizada%0APago%20de%20se%C3%B1a:%20Completado" target="_blank" title="Chatear por WhatsApp">💬</a>
+
+</body>
+</html>
